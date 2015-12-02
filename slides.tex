@@ -2,18 +2,14 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-\usepackage{etex}
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{hyperref}
-\usepackage{verbatim}
 \usepackage{url}
 \usepackage{natbib}
-\usepackage{auto-pst-pdf}
 \usepackage{pst-plot}
 \usepackage{amssymb}
 \usepackage{pifont}
-\usepackage{multirow}
 
 % Code snippets
 \usepackage{minted}
@@ -191,8 +187,6 @@ background events.
 
 {\scriptsize
 \begin{pythoncode}
-from sklearn.ensemble import ExtraTreesClassifier
-
 def find_best_tree(X_train, y_train, X_test, y_test,
                    X_data, y_data, X_control_sim, X_control_data):
     best_auc_test, best_auc_data = 0, 0
@@ -225,32 +219,25 @@ def find_best_tree(X_train, y_train, X_test, y_test,
 
 {\scriptsize
 \begin{pythoncode}
-auc_test, auc_data, ks, tree = find_best_tree(X_train, y_train,
-                                              X_test, y_test,
-                                              X_data, y_data,
-                                              X_control_sim, X_control_data)
-
-# Estimated AUC (simulated signal vs. data background)
->>> 0.986357983199
-
-# True AUC (data signal vs. data background)
->>> 0.90973817
-
-# KS statistic
->>> 0.0578  # < 0.09
+auc_test, auc_data, ks, tree = find_best_tree(...)
+>>> auc_test = 0.9863  # Estimated AUC (simulated signal vs. data background)
+>>> auc_data = 0.9097  # True AUC (data signal vs. data background)
+>>> ks = 0.0578        # KS statistic < 0.09
 \end{pythoncode}
 }
 
-\end{frame}
+\vspace{1cm}
 
-\begin{frame}
 What just happened? By chance, we have found a classifier that
 \begin{itemize}
 \item has seemingly good test performance;
 \item passes the control channel test that we have defined.
 \end{itemize}
 {\color{blue} This classifier appears to be exactly the one we were seeking}.
-\vspace{1cm}
+
+\end{frame}
+
+\begin{frame}
 
 {\color{red}Wrong}. The expected ROC AUC of 0.91 on real data signal and real data
 background is significantly lower than our first estimate, suggesting that
@@ -300,7 +287,7 @@ control channel test} because of its use of $X_3$!
 \end{frame}
 
 \begin{frame}[t]{Conclusions}
-    
+
 \end{frame}
 %--- Next Frame ---%
 
