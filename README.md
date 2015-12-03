@@ -5,20 +5,18 @@
 
 ---
 
+[![DOI](https://zenodo.org/badge/8801/glouppe/talk-aleph-workshop2015.svg)](https://zenodo.org/badge/latestdoi/8801/glouppe/talk-aleph-workshop2015)
 
 Please cite using the following BibTex entry:
 
 ```
-@misc{louppe2015disambiguation,
-   author = {{Louppe}, G. and {Al-Natsheh}, H. and {Susik}, M. and {Maguire}, E.},
-    title = "{Ethnicity sensitive author disambiguation using semi-supervised learning}",
-  journal = {ArXiv e-prints},
-archivePrefix = "arXiv",
-   eprint = {1508.07744},
- primaryClass = "cs.DL",
- keywords = {Computer Science - Digital Libraries, Computer Science - Information Retrieval},
-     year = 2015,
-    month = aug
+@misc{gilles_louppe_2015_34631,
+  author       = {Gilles Louppe and Tim Head},
+  title        = {Pitfalls of evaluating a classifier's performance in high energy physics applications},
+  month        = dec,
+  year         = 2015,
+  doi          = {10.5281/zenodo.34631},
+  url          = {http://dx.doi.org/10.5281/zenodo.34631}
 }
 ```
 
