@@ -11,12 +11,12 @@ Please cite using the following BibTex entry:
 
 ```
 @misc{gilles_louppe_2015_34631,
-  author       = {Gilles Louppe and Tim Head},
-  title        = {Pitfalls of evaluating a classifier's performance in high energy physics applications},
-  month        = dec,
-  year         = 2015,
-  doi          = {10.5281/zenodo.34631},
-  url          = {http://dx.doi.org/10.5281/zenodo.34631}
+  author = {Louppe, Gilles and Head, Tim},
+  title  = {Pitfalls of evaluating a classifier's performance in high energy physics applications},
+  month  = dec,
+  year   = 2015,
+  doi    = {10.5281/zenodo.34631},
+  url    = {http://dx.doi.org/10.5281/zenodo.34631}
 }
 ```
 
