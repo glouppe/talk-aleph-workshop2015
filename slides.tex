@@ -37,6 +37,10 @@
 \setbeamertemplate{itemize items}[circle]
 \setbeamertemplate{itemize subitem}[square]
 
+% Argmax
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
 % Front slide
 \title{{\bf Pitfalls of evaluating a classifier's performance in high energy physics applications}}
 \author{
@@ -46,65 +50,77 @@ Tim Head, EPFL (\href{https://twitter.com/betatim}{@betatim}) \\
 \date{December 11, 2015\\
 ALEPH workshop, NIPS}
 
-% Argmax
-\DeclareMathOperator*{\argmax}{arg\,max}
-
 \begin{document}
 
 \begin{frame}[plain]
 \titlepage
 \end{frame}
 
+% ------------------------------------------------------------------------------
+
 \begin{frame}
-  \frametitle{Disclaimer}
+\frametitle{Disclaimer}
 
 The following applies {\color{red} only} for the learning protocol of the {\it
-Flavours of Physics} Kaggle challenge.
+Flavours of Physics} Kaggle challenge \citep{blake2014}.
+
+\vspace{1cm}
+
+See \citep{louppe2014} for the notebook explanations.
 
 \end{frame}
 
+% ------------------------------------------------------------------------------
+
 \begin{frame}
-  \frametitle{Flavours of Physics: Finding $\tau \mapsto \mu\mu\mu$ challenge}
+\frametitle{Flavours of Physics: Finding $\tau \mapsto \mu\mu\mu$ challenge}
 
 Given a learning set ${\cal L}$ of
 
 \vspace{0.5cm}
 
- \begin{itemize}
- \item simulated signal events $(\mathbf{x}, s)$
- \item real data background events $(\mathbf{x}, b)$,
- \end{itemize}
+\begin{itemize}
+\item simulated signal events $(\mathbf{x}, s)$
+\item real data background events $(\mathbf{x}, b)$,
+\end{itemize}
 
 \vspace{0.5cm}
 
 build a classifier $\varphi : {\cal X} \mapsto \{s, b\}$ for distinguishing
 $\tau \mapsto \mu\mu\mu$ signal events from background events.
 
+$$\varphi^* = \argmin_\varphi \frac{1}{N} \sum_{\mathbf{x}_i} L(\varphi(\mathbf{x}_i))$$
+
 \end{frame}
 
-\begin{frame}
-  \frametitle{Control channel test}
+% ------------------------------------------------------------------------------
 
-The simulation is not perfect: {\color{red} simulated and real data events can often be distinguished}.
+\begin{frame}
+\frametitle{Control channel test}
+
+The simulation is not perfect: {\color{red} simulated and real data events can
+often be distinguished}.
 
 \vspace{1cm}
 
-To avoid exploiting simulation versus real data artefacts to
-classify signal from background events, we {\color{blue}evaluate whether $\varphi$ behaves
+To avoid exploiting simulation versus real data artefacts to classify signal
+from background events, we {\color{blue}evaluate whether $\varphi$ behaves
 differently on simulated signal and real data signal from a control channel
 ${\cal C}$}.
 
 \vspace{1cm}
 
-Control channel test: Requires the Kolmogorov-Smirnov
-test statistic between $\{ \varphi(\mathbf{x}) | \mathbf{x} \in {\cal
-C}^\text{sim} \}$ and $\{ \varphi(\mathbf{x}) | \mathbf{x} \in {\cal
-C}^\text{data} \}$ to be strictly smaller than some pre-defined threshold $t$.
+Control channel test: Requires the Kolmogorov-Smirnov test statistic between $\{
+\varphi(\mathbf{x}) | \mathbf{x} \in {\cal C}^\text{sim} \}$ and $\{
+\varphi(\mathbf{x}) | \mathbf{x} \in {\cal C}^\text{data} \}$ to be strictly
+smaller than some pre-defined threshold $t$.
 
 \end{frame}
 
+% ------------------------------------------------------------------------------
+
 \begin{frame}
-  \frametitle{Proposition}
+\frametitle{Loophole}
 
 Assuming that
 \begin{itemize}
@@ -112,9 +128,9 @@ Assuming that
 \item simulated features are more discriminative than they are in real data,
 \end{itemize}
 
-Then, even by chance, $\varphi$ might exploit simulation versus real data
-artefacts to classify signal from background events, {\color{red}while still passing the
-control channel test}.
+Then, it exists classifiers $\varphi$ exploiting simulation versus real data
+artefacts to classify signal from background events, for which {\color{red}the
+control channel test succeeds}.
 
 \vspace{0.5cm}
 
@@ -122,29 +138,34 @@ Therefore,
 
 \begin{itemize}
 
-\item The true performance of $\varphi$ on real data may be significantly different
-(typically lower) than estimated on simulated signal events versus real data
-background events.
+\item The true performance of $\varphi$ on real data may be significantly
+different (typically lower) than estimated on simulated signal events versus
+real data background events.
 
-\item Passing the KS test does not tell you anything about $\varphi$.
+\item Passing the KS test should not be interpreted as $\varphi$
+not exploiting simulation versus real data artefacts.
 
 \end{itemize}
 
 \end{frame}
 
-\begin{frame}
-  \frametitle{Toy example}
+% ------------------------------------------------------------------------------
 
-Let us consider an artificial classification
-problem between signal and background events, along with some close control
-channel data ${\cal C}^\text{sim}$ and ${\cal C}^\text{data}$.
+\begin{frame}
+\frametitle{Toy example}
+
+Let us consider an artificial classification problem between signal and
+background events, along with some close control channel data ${\cal
+C}^\text{sim}$ and ${\cal C}^\text{data}$.
 
 \vspace{0.5cm}
 
-Let us assume an
-input space defined on three input variables $X_1$, $X_2$, $X_3$ as follows.
+Let us assume an input space defined on three input variables $X_1$, $X_2$,
+$X_3$ as follows.
 
 \end{frame}
+
+% ------------------------------------------------------------------------------
 
 \begin{frame}
 
@@ -158,6 +179,8 @@ background, but relevant for simulated versus real data events.
 
 \end{frame}
 
+% ------------------------------------------------------------------------------
+
 \begin{frame}
 
 \begin{figure}
@@ -169,6 +192,8 @@ $X_2$ is {\color{blue} relevant} for  background and non-background events.
 
 \end{frame}
 
+% ------------------------------------------------------------------------------
+
 \begin{frame}
 
 \begin{figure}
@@ -176,14 +201,15 @@ $X_2$ is {\color{blue} relevant} for  background and non-background events.
 \includegraphics[width=0.6\textwidth]{x3.png}
 \end{figure}
 
-$X_3$ is relevant for training versus control events,
-but has otherwise no discriminative power between signal and
-background events.
+$X_3$ is relevant for training versus control events, but has otherwise no
+discriminative power between signal and background events.
 
 \end{frame}
 
+% ------------------------------------------------------------------------------
+
 \begin{frame}[fragile]
-  \frametitle{Random exploration}
+\frametitle{Random exploration}
 
 {\scriptsize
 \begin{pythoncode}
@@ -214,8 +240,10 @@ def find_best_tree(X_train, y_train, X_test, y_test,
 
 \end{frame}
 
+% ------------------------------------------------------------------------------
+
 \begin{frame}[fragile]
-  \frametitle{Random exploration}
+\frametitle{Random exploration}
 
 {\scriptsize
 \begin{pythoncode}
@@ -226,7 +254,7 @@ auc_test, auc_data, ks, tree = find_best_tree(...)
 \end{pythoncode}
 }
 
-\vspace{1cm}
+\vspace{0.5cm}
 
 What just happened? By chance, we have found a classifier that
 \begin{itemize}
@@ -235,15 +263,15 @@ What just happened? By chance, we have found a classifier that
 \end{itemize}
 {\color{blue} This classifier appears to be exactly the one we were seeking}.
 
-\end{frame}
+\vspace{0.5cm}
 
-\begin{frame}
-
-{\color{red}Wrong}. The expected ROC AUC of 0.91 on real data signal and real data
-background is significantly lower than our first estimate, suggesting that
+{\color{red}Wrong}. The expected ROC AUC of 0.91 on real data signal and real
+data background is significantly lower than our first estimate, suggesting that
 there is still something wrong.
 
 \end{frame}
+
+% ------------------------------------------------------------------------------
 
 \begin{frame}
 \begin{figure}
@@ -257,46 +285,90 @@ control channel test} because of its use of $X_3$!
 
 \end{frame}
 
+% ------------------------------------------------------------------------------
 
 \begin{frame}
-  \frametitle{Winning the challenge}
-
-% As in the challenge, simulation versus real data patterns may be hidden into
-% several variables, making it not possible to detect the problem by eye by
-% looking at variables individually. However, a learning algorithm might still be
-% able to exploit them, either by chance or on purpose.
-%
-% \vspace{0.5cm}
+\frametitle{Winning the challenge}
 
 \begin{enumerate}
-\item learn to distinguish between training and control data,
-\item build a classifier on training data, with all the freedom to exploit simulation artefacts,
-\item assign random predictions to samples predicted as control data, otherwise predict using the classifier found in the previous step.
+\item Learn to distinguish between training and control data,
+\item Build a classifier on training data, with all the freedom to exploit simulation artefacts,
+\item Assign random predictions to samples predicted as control data, otherwise predict using the classifier found in the previous step.
 \end{enumerate}
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{hole.png}
+\includegraphics[width=0.5\textwidth]{hole.png}\\
+{\it The reconstructed mass allows to distinguish {\color{red} signal} from {\color{blue} background} and training from {\color{mygreen} control}!}
 \end{figure}
 
 \end{frame}
 
+% ------------------------------------------------------------------------------
+
 \begin{frame}
-  \frametitle{A machine learning response}
+\frametitle{A machine learning response}
+
+As simulated training data increases (i.e., as $N \to \infty$),
+
+$$\frac{1}{N} \sum_{\mathbf{x}_i} L(\varphi(\mathbf{x}_i)) \to \int L(\varphi(\mathbf{x})) {\color{red} p_\text{sim}(\mathbf{x})} d\mathbf{x}.$$
+
+We want to be good on real data, i.e., minimize
+$$\int L(\varphi(\mathbf{x})) {\color{blue} p_\text{data}(\mathbf{x})} d\mathbf{x}.$$
+
+Solution: {\it importance weighting}.
+
+$$\varphi^* = \argmin_\varphi \frac{1}{N} \sum_{\mathbf{x}_i} \frac{\color{blue} p_\text{data}(\mathbf{x}_i)}{\color{red} p_\text{sim}(\mathbf{x}_i)}  L(\varphi(\mathbf{x}_i))$$
 
 \end{frame}
 
-\begin{frame}[t]{Conclusions}
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Density ratio estimation}
+But for signal events, we don't even have real data observations!
+
+$$\text{Assumption:}\quad \frac{\color{blue} p_\text{data}(\mathbf{x})}{\color{red} p_\text{sim}(\mathbf{x})} \approx \frac{\color{blue} p_\text{data-control}(\mathbf{x})}{\color{red} p_\text{sim-control}(\mathbf{x})} = r(\mathbf{x}) $$
+
+\vspace{1cm}
+
+In the likelihood-free setting, estimating $r(\mathbf{x})$ is known as the {\it
+density-ratio estimation} problem. Same as
+\begin{itemize}
+    \item Learning under covariate shift,
+    \item Probabilistic classification,
+    \item Likelihood-ratio test,
+    \item Outlier detection,
+    \item Mutual information estimation, ...
+\end{itemize}
+See \cite{sugiyama2012density} for a review.
+\end{frame}
+
+% ------------------------------------------------------------------------------
+
+\begin{frame}{Conclusions}
+
+\begin{itemize}
+    \item Formulating appropriate machine learning tasks is {\color{red} difficult}.
+
+    \vspace{0.5cm}
+
+    \item On purpose or {\color{red} unwillingly}, simulation versus real data artefacts
+          could be exploited to maximize classifiers accuracy.
+
+    \vspace{0.5cm}
+
+    \item Physically more correct classifiers can be obtained e.g. with {\color{blue} density-ratio reweighting}.
+\end{itemize}
 
 \end{frame}
-%--- Next Frame ---%
 
-\begin{frame}[t]{References}
-    See also our \href{https://github.com/glouppe/notebooks/blob/master/Classification\%20with\%20a\%20control\%20channel.ipynb}{notebook} for further details.
+% ------------------------------------------------------------------------------
+
+\begin{frame}[plain,noframenumbering]
+    \frametitle{References}
+    {\footnotesize
+    \bibliographystyle{apalike}
+    \bibliography{biblio}}
 \end{frame}
-%--- Next Frame ---%
-
-
-
 
 \end{document}
