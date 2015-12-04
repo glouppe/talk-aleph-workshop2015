@@ -10,7 +10,7 @@
 Please cite using the following BibTex entry:
 
 ```
-@misc{gilles_louppe_2015_34631,
+@misc{louppe2015pitfalls,
   author = {Louppe, Gilles and Head, Tim},
   title  = {Pitfalls of evaluating a classifier's performance in high energy physics applications},
   month  = dec,
