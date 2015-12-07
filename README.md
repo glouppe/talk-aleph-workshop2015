@@ -5,7 +5,7 @@
 
 ---
 
-[![DOI](https://zenodo.org/badge/8801/glouppe/talk-aleph-workshop2015.svg)](https://zenodo.org/badge/latestdoi/8801/glouppe/talk-aleph-workshop2015)
+[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.34934.svg)](http://dx.doi.org/10.5281/zenodo.34934)
 
 Please cite using the following BibTex entry:
 
@@ -15,8 +15,8 @@ Please cite using the following BibTex entry:
   title  = {Pitfalls of evaluating a classifier's performance in high energy physics applications},
   month  = dec,
   year   = 2015,
-  doi    = {10.5281/zenodo.34631},
-  url    = {http://dx.doi.org/10.5281/zenodo.34631}
+  doi    = {10.5281/zenodo.34934},
+  url    = {http://dx.doi.org/10.5281/zenodo.34934}
 }
 ```
 
