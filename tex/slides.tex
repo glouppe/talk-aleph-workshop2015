@@ -89,8 +89,6 @@ Given a learning set ${\cal L}$ of
 build a classifier $\varphi : {\cal X} \mapsto \{s, b\}$ for distinguishing
 $\tau \mapsto \mu\mu\mu$ signal events from background events.
 
-$$\varphi^* = \argmin_\varphi \frac{1}{N} \sum_{\mathbf{x}_i} L(\varphi(\mathbf{x}_i))$$
-
 \end{frame}
 
 % ------------------------------------------------------------------------------
@@ -122,14 +120,9 @@ smaller than some pre-defined threshold $t$.
 \begin{frame}
 \frametitle{Loophole}
 
-Assuming that
-\begin{itemize}
-\item control data can be distinguished from training data,
-\item simulated features are more discriminative than they are in real data,
-\end{itemize}
-
-Then, it exists classifiers $\varphi$ exploiting simulation versus real data
-artefacts to classify signal from background events, for which {\color{red}the
+If control data can be distinguished from training data,
+then it exists classifiers $\varphi$ exploiting simulation artefacts
+ to classify signal from background events, for which {\color{red}the
 control channel test succeeds}.
 
 \vspace{0.5cm}
