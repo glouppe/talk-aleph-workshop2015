@@ -242,7 +242,6 @@ def find_best_tree(X_train, y_train, X_test, y_test,
 \begin{pythoncode}
 auc_test, auc_data, ks, tree = find_best_tree(...)
 >>> auc_test = 0.9863  # Estimated AUC (simulated signal vs. data background)
->>> auc_data = 0.9097  # True AUC (data signal vs. data background)
 >>> ks = 0.0578        # KS statistic < 0.09
 \end{pythoncode}
 }
@@ -258,9 +257,17 @@ What just happened? By chance, we have found a classifier that
 
 \vspace{0.5cm}
 
-{\color{red}Wrong}. The expected ROC AUC of 0.91 on real data signal and real
+{\color{red}Wrong}. The expected ROC AUC on real data signal and real
 data background is significantly lower than our first estimate, suggesting that
 there is still something wrong.
+
+\vspace{0.5cm}
+
+{\scriptsize
+\begin{pythoncode}
+>>> auc_data = 0.9097  # True AUC (data signal vs. data background)
+\end{pythoncode}
+}
 
 \end{frame}
 
